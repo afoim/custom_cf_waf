@@ -1,0 +1,21 @@
+<!doctype html><meta charset=utf-8><title>错误</title><style>
+body{margin:0;background:#c0c0c0;font:14px "宋体",monospace}
+.w{width:420px;margin:80px auto;border:2px outset #fff;background:#e0e0e0}
+.t{background:#000080;color:#fff;padding:4px;font-weight:bold}
+.c{padding:12px}
+.b{margin-top:10px;padding:4px 10px;border:2px outset #fff;background:#d0d0d0;display:inline-block}
+</style>
+<div class=w>
+<div class=t>错误</div>
+<div class=c>
+<h3>IP不行</h3>
+<p>你访问的是反代服务！</p>
+<p>检测到你的地区：<b id=l>读取中...</b></p>
+<p>仅允许中国大陆访问，请直连相关服务！</p>
+<div class=b onclick=location.reload()>确定</div>
+</div></div>
+<script>
+fetch("/cdn-cgi/trace").then(r=>r.text()).then(t=>{
+let m=t.match(/loc=([A-Z]+)/);l.innerText=m?m[1]:"未知"
+}).catch(()=>l.innerText="失败");
+</script>
